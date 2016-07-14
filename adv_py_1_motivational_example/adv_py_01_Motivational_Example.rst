@@ -32,3 +32,19 @@ Topics
 - object-oriented programming
 - advanced text processing
 - work flow automation
+
+Github
+======
+
+link:
+
+`<https://github.com/ryanGT/advanced_python>`_
+
+folder:
+
+adv_py_1_motivational_example
+
+main file:
+
+slide_generator.py
+

@@ -98,8 +98,34 @@ class presentation(object):
 
     def append_topics(self, bullets):
         self.append_bullet_slide('Topics',bullets)
-        
 
+
+    def append_gen_slide(self, title, lines):
+        new_slide = slide(title, lines)
+        self.slides.append(new_slide)
+        
+        
+    def append_github(self, link, folder='', main_file='', files=[]):
+        link_line = '`<%s>`_' % link
+        outlist = ['link:','',link_line]
+        if folder:
+            outlist.append('\nfolder:\n\n%s' % folder)
+        if main_file:
+            outlist.append('\nmain file:\n\n%s' %  main_file)
+        if files:
+            outlist.append('')
+            if main_file:
+                outlist.append('other files:')
+            else:
+                outlist.append('files:')
+
+            outlist.append('')
+            for curfile in files:
+                outlist.append('- :code:`%s`' % cufile)
+        outlist.append('')
+        self.append_gen_slide('Github',outlist)
+
+        
     def gen_rst_str(self):
         slide_list = []
         for slide in self.slides:
@@ -136,6 +162,7 @@ class presentation(object):
     def copy(self):
         """Copy to the lectures root subfolder"""
         self.dst_path = os.path.join(self.folder_path, self.fn)
+        print('copying to %s' % self.dst_path)
         shutil.copy(self.fn, self.dst_path)
 
 
@@ -171,9 +198,14 @@ bullets2 = ['object-oriented programming','advanced text processing', \
             'work flow automation']
 
 pres1.append_topics(bullets2)
+gitroot = 'https://github.com/ryanGT/advanced_python'
+pres1.append_github(gitroot, 'adv_py_1_motivational_example', \
+                    'slide_generator.py')
 pres1.go()
 
 
 # try/except
 pres_num += 1
 
+# link 1: http://www.tutorialspoint.com/python/assertions_in_python.htm
+# link 2: http://stackoverflow.com/questions/5142418/what-is-the-use-of-assert-in-python
