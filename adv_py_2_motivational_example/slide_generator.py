@@ -17,6 +17,7 @@ pres_header = """=============================================
 
 import os, shutil
 lectures_root = '/Users/rkrauss/raspi_lectures/020_advanced_python'
+gitroot = 'https://github.com/ryanGT/advanced_python'
 
 def gen_underline(str_in, symbol='='):
     N = len(str_in)
@@ -142,7 +143,9 @@ class presentation(object):
 
     def build_filename(self):
         fn = 'adv_py_%0.2i_%s.rst' % (self.presnum, self.title)
-        fn = fn.replace(' ','_')
+        replace_list = [' ','/','\\',':']
+        for item in replace_list:
+            fn = fn.replace(item,'_')
         self.fn = fn
         return self.fn
 
@@ -181,7 +184,32 @@ class presentation(object):
 pres_num = 1
 
 # first presentation
-pres1 = presentation(pres_num, 'Motivational Example')
+# try/except
+
+pres1 = presentation(pres_num, 'Try/Except and Raise')
+
+bullets2a = ['using try/except to catch and handle errors', \
+             'using raise to cause errors when bad things might happen']
+pres1.append_overview(bullets2a)
+
+# link 1: http://www.tutorialspoint.com/python/assertions_in_python.htm
+# link 2: http://stackoverflow.com/questions/5142418/what-is-the-use-of-assert-in-python
+links1 = '`<http://www.tutorialspoint.com/python/assertions_in_python.htm>`_'
+links2 = '`<http://stackoverflow.com/questions/5142418/what-is-the-use-of-assert-in-python>`_'
+line2 = 'I took my assertion example idea from here:'
+pres1.append_gen_slide('Good Tutorial',[links1])
+pres1.append_gen_slide('Citation',[line2,'',links2])
+
+
+
+pres1.append_github(gitroot, 'adv_py_1_try_accept_raise')
+pres1.go()
+
+
+# Adv. Text Processing Example
+pres_num += 1
+
+pres2 = presentation(pres_num, 'Motivational Example')
 
 bullets1 = ['motivate advanced Python with object-oriented text processing example', \
             'show how I would use Python with all the bells and whistles to automate my workflow', \
@@ -192,20 +220,14 @@ bullets1 = ['motivate advanced Python with object-oriented text processing examp
             'This guarantees consistent formatting', \
             'I think this is a cool example of the power of automated text processing']
 
-pres1.append_overview(bullets1)
+pres2.append_overview(bullets1)
 
 bullets2 = ['object-oriented programming','advanced text processing', \
             'work flow automation']
 
-pres1.append_topics(bullets2)
-gitroot = 'https://github.com/ryanGT/advanced_python'
-pres1.append_github(gitroot, 'adv_py_1_motivational_example', \
+pres2.append_topics(bullets2)
+pres2.append_github(gitroot, 'adv_py_2_motivational_example', \
                     'slide_generator.py')
-pres1.go()
+pres2.go()
 
 
-# try/except
-pres_num += 1
-
-# link 1: http://www.tutorialspoint.com/python/assertions_in_python.htm
-# link 2: http://stackoverflow.com/questions/5142418/what-is-the-use-of-assert-in-python
