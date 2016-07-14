@@ -39,6 +39,10 @@ link:
 
 `<https://github.com/ryanGT/advanced_python>`_
 
+
+`\vspace{0.1in}`
+
+
 folder:
 
 adv_py_1_try_accept_raise

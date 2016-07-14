@@ -79,13 +79,16 @@ class bullet_slide(slide):
     
 
 class presentation(object):
-    def __init__(self, presnum, title, slides=[]):
+    def __init__(self, presnum, title, slides=None):
         self.presnum = presnum
         self.title = title
         self.subtitle = 'Advanced Python %i' % self.presnum
         temp_header = pres_header.replace('%TITLE%',self.title)
         self.pres_header = temp_header.replace('%SUBTITLE%', self.subtitle)
-        self.slides = slides
+        if slides is None:
+            self.slides = []
+        else:
+            self.slides = slides
 
 
     def append_bullet_slide(self, title, bullets):
@@ -106,14 +109,18 @@ class presentation(object):
         self.slides.append(new_slide)
         
         
-    def append_github(self, link, folder='', main_file='', files=[]):
+    def append_github(self, link, folder='', main_file='', files=None):
         link_line = '`<%s>`_' % link
-        outlist = ['link:','',link_line]
+        outlist = ['link:','',link_line,'']
+        myvspace = '\n`\\vspace{0.1in}`\n'
         if folder:
+            outlist.append(myvspace)
             outlist.append('\nfolder:\n\n%s' % folder)
         if main_file:
+            outlist.append(myvspace)
             outlist.append('\nmain file:\n\n%s' %  main_file)
         if files:
+            outlist.append(myvspace)
             outlist.append('')
             if main_file:
                 outlist.append('other files:')
@@ -210,10 +217,12 @@ pres1.go()
 pres_num += 1
 
 pres2 = presentation(pres_num, 'Advanced Text Processing Example')
+pres2.append_bullet_slide('Disclaimer',['this may seem a little bit crazy', \
+                                        'it may be a little bit intimidating'])
 
 bullets1 = ['motivate advanced Python with object-oriented text processing example', \
-            'show how I would use Python with all the bells and whistles to automate my workflow', \
-            'I hate repentative tasks', \
+            'show how I would use Python with all the bells and whistles to automate my work flow', \
+            'I hate repetitive tasks', \
             'I would rather write Python code than create documents "by hand"', \
             'Programming is more fun than writing', \
             'Remembering what presentation I was on got annoying for intermediate Python', \
@@ -231,3 +240,27 @@ pres2.append_github(gitroot, 'adv_py_2_advanced_text_processing_example', \
 pres2.go()
 
 
+# where and if on vectors
+pres_num += 1
+
+pres3 = presentation(pres_num, 'numpy.where and if on vectors')
+text1 = """
+- data processing often involves applying if/then logic to vectors
+- if/then on vectors sometimes confuses students
+- there are several ways to do this in python
+- :code:`numpy.where` is a very clean way to do this, but it is slightly tricky
+"""
+
+pres3.append_gen_slide('Overivew', text1)
+
+text2 = """
+- review of :code:`for` loops
+- review of :code:`enumerate`
+- common errors for :code:`if/then` on vectors
+- some :code:`numpy` indexing and slicing "tricks"
+- the :code:`where` function from the :code:`numpy` module
+"""
+
+pres3.append_gen_slide('Topics', text2)
+pres3.append_github(gitroot, 'adv_py_2_advanced_text_processing_example', \
+                    'slide_generator.py')
