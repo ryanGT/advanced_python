@@ -209,7 +209,7 @@ pres1.go()
 # Adv. Text Processing Example
 pres_num += 1
 
-pres2 = presentation(pres_num, 'Motivational Example')
+pres2 = presentation(pres_num, 'Advanced Text Processing Example')
 
 bullets1 = ['motivate advanced Python with object-oriented text processing example', \
             'show how I would use Python with all the bells and whistles to automate my workflow', \
@@ -226,7 +226,7 @@ bullets2 = ['object-oriented programming','advanced text processing', \
             'work flow automation']
 
 pres2.append_topics(bullets2)
-pres2.append_github(gitroot, 'adv_py_2_motivational_example', \
+pres2.append_github(gitroot, 'adv_py_2_advanced_text_processing_example', \
                     'slide_generator.py')
 pres2.go()
 
