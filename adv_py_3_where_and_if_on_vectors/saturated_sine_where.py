@@ -2,7 +2,7 @@ from matplotlib.pyplot import *
 from numpy import *
 
 # create a time vector and the y vector
-t = arange(0,1,0.001)
+t = arange(0,1,0.01)
 y = 2*sin(2*pi*t)
 
 # create a copy of y for the dashed line
@@ -27,6 +27,7 @@ plot(t,y_sat,linewidth=2.0, label='$y(t)$')
 ylabel('$y(t)$')
 xlabel('Time (sec.)')
 legend(loc=1)
+title('from the where function')
 
 # show the plot on the screen
 show()

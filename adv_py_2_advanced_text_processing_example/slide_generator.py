@@ -26,9 +26,14 @@ def gen_underline(str_in, symbol='='):
 
 class slide(object):
     """Class for a slide with arbitrary lines as content."""
-    def __init__(self, title, lines=[]):
+    def __init__(self, title, lines=None):
         self.title = title
-        self.lines = lines
+        if lines is None:
+            self.lines = []
+        elif type(lines) == str:
+            self.lines = [lines]
+        else:
+            self.lines = lines
 
 
     def _append_title(self):
@@ -150,7 +155,7 @@ class presentation(object):
 
     def build_filename(self):
         fn = 'adv_py_%0.2i_%s.rst' % (self.presnum, self.title)
-        replace_list = [' ','/','\\',':']
+        replace_list = [' ','/','\\',':','.']
         for item in replace_list:
             fn = fn.replace(item,'_')
         self.fn = fn
@@ -262,5 +267,5 @@ text2 = """
 """
 
 pres3.append_gen_slide('Topics', text2)
-pres3.append_github(gitroot, 'adv_py_2_advanced_text_processing_example', \
-                    'slide_generator.py')
+pres3.append_github(gitroot, 'adv_py_3_where_and_if_on_vectors')
+pres3.go()
