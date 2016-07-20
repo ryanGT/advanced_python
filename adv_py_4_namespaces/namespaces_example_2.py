@@ -26,7 +26,7 @@ def goodfunc2(a):
 print('before calling goodfunc1, a = %i' % a)
 good1 = goodfunc1()
 
-#bad1 = badfunc1()
+#bad1 = badfunc()
 
 print('before calling goodfunc2, a = %i' % a)
 good2 = goodfunc2(a)
