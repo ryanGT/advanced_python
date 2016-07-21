@@ -2,7 +2,8 @@ import csv
 
 mysniff = csv.Sniffer()
 
-def get_dialect(filename,delimiters=[',','\t',' '], samplelines=5):
+def get_dialect(filename, delimiters=[',','\t'], \
+                samplelines=5):
     f = open(filename,'r')
     all_list = f.readlines()
     sample_list = all_list[0:samplelines]
@@ -32,6 +33,4 @@ dialect2 = get_dialect(fn2)
 rows1 = read_to_list(fn1, dialect1)
 rows2 = read_to_list(fn2, dialect2)
 
-## f = open('data_file_1t.csv','r')
-## list2 = f.readlines()
-## f.close()
+
